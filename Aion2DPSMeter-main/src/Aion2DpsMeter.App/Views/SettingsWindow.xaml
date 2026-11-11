@@ -1,0 +1,111 @@
+<Window x:Class="Aion2DpsMeter.App.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings — AION 2 DPS Meter"
+        Width="520" SizeToContent="Height" ResizeMode="NoResize"
+        Background="{StaticResource WindowBg}" FontFamily="Segoe UI" FontSize="12"
+        WindowStartupLocation="CenterScreen" Topmost="True">
+    <Window.Resources>
+        <Style x:Key="Label" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Text}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,4,12,4" />
+        </Style>
+        <Style x:Key="Hint" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource SubText}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="0,0,0,4" />
+        </Style>
+    </Window.Resources>
+    <StackPanel Margin="16">
+        <TextBlock Text="Panel" Style="{StaticResource SectionTitle}" Margin="0,0,0,4" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition /><RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Background opacity" Style="{StaticResource Label}" />
+            <Slider Grid.Column="1" x:Name="OpacitySlider" Minimum="0.05" Maximum="1" VerticalAlignment="Center"
+                    ValueChanged="OpacitySlider_ValueChanged" />
+            <TextBlock Grid.Row="1" Text="Rows shown" Style="{StaticResource Label}" />
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="MaxRowsBox" Width="60" HorizontalAlignment="Left" />
+        </Grid>
+
+        <TextBlock Text="Fights" Style="{StaticResource SectionTitle}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="End a fight after idle (seconds)" Style="{StaticResource Label}" />
+            <TextBox Grid.Column="1" x:Name="IdleBox" Width="60" HorizontalAlignment="Left" />
+        </Grid>
+        <CheckBox x:Name="BossOnlyBox" Content="In boss fights, count only damage to the boss" />
+        <CheckBox x:Name="PartyOnlyBox" Content="Show only my party (when in a party)" />
+
+        <TextBlock Text="History" Style="{StaticResource SectionTitle}" />
+        <TextBlock Style="{StaticResource Hint}" Text="Boss fights are always saved." />
+        <CheckBox x:Name="SaveTrashBox" Content="Also save fights with normal monsters" />
+        <CheckBox x:Name="SaveDummyBox" Content="Save training dummy fights" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="…when at least (seconds)" Style="{StaticResource Label}" />
+            <TextBox Grid.Column="1" x:Name="MinTrashBox" Width="60" HorizontalAlignment="Left" />
+        </Grid>
+
+        <TextBlock Text="Hotkeys (work while the game has focus)" Style="{StaticResource SectionTitle}" />
+        <TextBlock Style="{StaticResource Hint}" Text="Click a box and press the key combination (with Ctrl, Shift or Alt). Backspace clears it." />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Reset meter" Style="{StaticResource Label}" />
+            <TextBox Grid.Column="1" x:Name="HkReset" Width="180" HorizontalAlignment="Left" IsReadOnly="True" PreviewKeyDown="Hotkey_PreviewKeyDown" Margin="0,2" />
+            <TextBlock Grid.Row="1" Text="Show / hide panel" Style="{StaticResource Label}" />
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="HkToggle" Width="180" HorizontalAlignment="Left" IsReadOnly="True" PreviewKeyDown="Hotkey_PreviewKeyDown" Margin="0,2" />
+            <TextBlock Grid.Row="2" Text="Click-through on / off" Style="{StaticResource Label}" />
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="HkClick" Width="180" HorizontalAlignment="Left" IsReadOnly="True" PreviewKeyDown="Hotkey_PreviewKeyDown" Margin="0,2" />
+            <TextBlock Grid.Row="3" Text="Damage / healing" Style="{StaticResource Label}" />
+            <TextBox Grid.Row="3" Grid.Column="1" x:Name="HkMode" Width="180" HorizontalAlignment="Left" IsReadOnly="True" PreviewKeyDown="Hotkey_PreviewKeyDown" Margin="0,2" />
+        </Grid>
+
+        <TextBlock Text="Updates" Style="{StaticResource SectionTitle}" />
+        <CheckBox x:Name="UpdatesBox" Content="Tell me when a new version is released (checks GitHub)" />
+        <TextBlock x:Name="VersionText" Style="{StaticResource Hint}" />
+
+        <TextBlock Text="Diagnostics" Style="{StaticResource SectionTitle}" />
+        <CheckBox x:Name="RecordBox" Content="Record game packets to a .pcap file (for bug reports)" />
+        <TextBlock Style="{StaticResource Hint}" Text="Recordings contain character names of the people around you. Share them only with people you trust." />
+        <WrapPanel Margin="0,4,0,0">
+            <Button Style="{StaticResource Button}" Content="Open data folder" Click="OpenData_Click" Margin="0,0,6,6" />
+            <Button Style="{StaticResource Button}" Content="Replay a recording…" Click="Replay_Click" Margin="0,0,6,6" />
+            <Button Style="{StaticResource Button}" Content="Edit opcodes…" Click="Opcodes_Click" Margin="0,0,6,6"
+                    ToolTip="After a game patch, protocol opcodes can be fixed here without a new version" />
+        </WrapPanel>
+
+        <TextBlock Text="Support the project" Style="{StaticResource SectionTitle}" />
+        <TextBlock Style="{StaticResource Hint}"
+                   Text="The meter is free. If it helps you and you want to say thanks, you can buy me a coffee." />
+        <WrapPanel Margin="0,4,0,0">
+            <Button Style="{StaticResource Button}" Content="☕ Ko-fi" Click="KoFi_Click" Margin="0,0,6,6" />
+            <Button Style="{StaticResource Button}" Content="PayPal" Click="PayPal_Click" Margin="0,0,6,6" />
+            <Button Style="{StaticResource Button}" Content="Project page on GitHub" Click="Project_Click" Margin="0,0,6,6" />
+        </WrapPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
+            <Button Style="{StaticResource Button}" Content="Save" Click="Save_Click" IsDefault="True" Margin="0,0,8,0" MinWidth="80" />
+            <Button Style="{StaticResource Button}" Content="Cancel" Click="Cancel_Click" IsCancel="True" MinWidth="80" />
+        </StackPanel>
+    </StackPanel>
+</Window>

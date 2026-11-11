@@ -1,0 +1,11 @@
+bin/
+obj/
+publish/
+.vs/
+*.user
+*.pcap
+*.pcapng
+TestResults/
+dist/
+*.zip
+*.exe

@@ -1,0 +1,722 @@
+{
+  "160000": {
+    "name": "Silent Graveyard"
+  },
+  "160001": {
+    "name": "Fafnite Amphitheater"
+  },
+  "160002": {
+    "name": "Silent Graveyard"
+  },
+  "160003": {
+    "name": "Silent Graveyard"
+  },
+  "160004": {
+    "name": "Fafnite Amphitheater"
+  },
+  "160005": {
+    "name": "Fafnite Amphitheater"
+  },
+  "200002": {
+    "name": "Dream of Torment"
+  },
+  "200003": {
+    "name": "Nightmare"
+  },
+  "200004": {
+    "name": "Narun's Dream"
+  },
+  "200005": {
+    "name": "Subspace of Ascension"
+  },
+  "200006": {
+    "name": "Dream of Shattered Fragments"
+  },
+  "210003": {
+    "name": "Dream Remnants"
+  },
+  "210013": {
+    "name": "Forgotten Battlefield"
+  },
+  "210014": {
+    "name": "Zikel's Collapsed Barracks"
+  },
+  "210015": {
+    "name": "Zikel's Distorted Dream"
+  },
+  "210027": {
+    "name": "Chloris's Abyss"
+  },
+  "220003": {
+    "name": "Dream Remnants"
+  },
+  "220013": {
+    "name": "Forgotten Battlefield"
+  },
+  "220014": {
+    "name": "Kaisinel's Collapsed Sanctum"
+  },
+  "220015": {
+    "name": "Kaisinel's Distorted Dream"
+  },
+  "220027": {
+    "name": "Sigebert's Abyss"
+  },
+  "310001": {
+    "name": "Poacher's Den"
+  },
+  "310002": {
+    "name": "Spirit Flower Cave"
+  },
+  "310003": {
+    "name": "Cursed Hideout"
+  },
+  "310004": {
+    "name": "Mysterious Mushroom Cave"
+  },
+  "310005": {
+    "name": "Cave of the Defeated"
+  },
+  "310006": {
+    "name": "Filth Pit"
+  },
+  "310007": {
+    "name": "Illusionary Ruins"
+  },
+  "310008": {
+    "name": "Dehinon's Hideout"
+  },
+  "310009": {
+    "name": "Guardian's Armory"
+  },
+  "310010": {
+    "name": "Cave of the Desperate"
+  },
+  "310011": {
+    "name": "Hidden Valley"
+  },
+  "310012": {
+    "name": "Distorted Cave"
+  },
+  "310013": {
+    "name": "Corrupted Spiritmaster's Residence"
+  },
+  "310014": {
+    "name": "Karat's Nest"
+  },
+  "310015": {
+    "name": "Kius' Residence"
+  },
+  "310016": {
+    "name": "Lupyllini Habitat"
+  },
+  "310017": {
+    "name": "Looted Repository"
+  },
+  "310018": {
+    "name": "Abandoned Odylium Cave"
+  },
+  "310019": {
+    "name": "Solitary Rock Tomb"
+  },
+  "310020": {
+    "name": "Kidnapper's Hold"
+  },
+  "310021": {
+    "name": "Marsh Library"
+  },
+  "310022": {
+    "name": "Krall Barracks"
+  },
+  "310023": {
+    "name": "Canyon Library"
+  },
+  "310024": {
+    "name": "Chilly Hideout"
+  },
+  "310025": {
+    "name": "Cave Storage"
+  },
+  "310026": {
+    "name": "Grave of the Wrathful Dead"
+  },
+  "310027": {
+    "name": "Akilo Thieves Den"
+  },
+  "310028": {
+    "name": "Deadly Poison Den"
+  },
+  "310029": {
+    "name": "Herb Cave"
+  },
+  "310030": {
+    "name": "Looted Pilgrim's Rest"
+  },
+  "310031": {
+    "name": "Targoth's Cave"
+  },
+  "310032": {
+    "name": "Broken Hall of Knowledge"
+  },
+  "310033": {
+    "name": "Deep Underground Cave"
+  },
+  "310034": {
+    "name": "Fortress Jail"
+  },
+  "310035": {
+    "name": "Scribe's Room"
+  },
+  "310036": {
+    "name": "Red Dragon Altar"
+  },
+  "310037": {
+    "name": "Wild Biruta Habitat"
+  },
+  "310038": {
+    "name": "Fissure Cave"
+  },
+  "310039": {
+    "name": "Renegade Base"
+  },
+  "310040": {
+    "name": "Klaw Den"
+  },
+  "310041": {
+    "name": "Rift Cave"
+  },
+  "310042": {
+    "name": "Deep and Dark Pit"
+  },
+  "310043": {
+    "name": "Wild Kuru Habitat"
+  },
+  "310044": {
+    "name": "Fortress Grave"
+  },
+  "310045": {
+    "name": "Anguish Hideout"
+  },
+  "310046": {
+    "name": "Aullaeu Oratory"
+  },
+  "310047": {
+    "name": "Prison of Exiles"
+  },
+  "310048": {
+    "name": "Kraka's Altar"
+  },
+  "310049": {
+    "name": "Dratona Outpost"
+  },
+  "310050": {
+    "name": "Balaur Scouts Campsite"
+  },
+  "310051": {
+    "name": "Altar of Hope"
+  },
+  "310052": {
+    "name": "Experimental Prison Compound"
+  },
+  "310053": {
+    "name": "Balaur Scouts Outpost"
+  },
+  "310054": {
+    "name": "Hidden Ruins Altar"
+  },
+  "310055": {
+    "name": "Laborers Training Ground"
+  },
+  "310056": {
+    "name": "Konutin's Cave"
+  },
+  "310057": {
+    "name": "Plantation Storage"
+  },
+  "310058": {
+    "name": "Bibliophile's Grave"
+  },
+  "310059": {
+    "name": "Forest Library"
+  },
+  "310060": {
+    "name": "Collapsed Fortress Basement"
+  },
+  "310061": {
+    "name": "Hidden Lepharist Research Center"
+  },
+  "310062": {
+    "name": "Abandoned Life Hideout"
+  },
+  "310063": {
+    "name": "Life Awakening Site"
+  },
+  "310064": {
+    "name": "Sunken Ancient Legacy"
+  },
+  "310065": {
+    "name": "Ishtar Logistics Base"
+  },
+  "310066": {
+    "name": "Drok the Outlaw's Den"
+  },
+  "310067": {
+    "name": "Filthy Cave"
+  },
+  "310068": {
+    "name": "Defunct Creion Laboratory"
+  },
+  "310069": {
+    "name": "Fallen Haven"
+  },
+  "310070": {
+    "name": "Life Daeva Library"
+  },
+  "310071": {
+    "name": "Lepharist Special Operations Research Center"
+  },
+  "310072": {
+    "name": "Ratcatchers Base"
+  },
+  "310073": {
+    "name": "Gravarax Research Center"
+  },
+  "310074": {
+    "name": "Manduri Habitat"
+  },
+  "310075": {
+    "name": "Mutated Drana Plantation"
+  },
+  "310076": {
+    "name": "Sunken Temple"
+  },
+  "310077": {
+    "name": "Barrier Tower Fortress Vault"
+  },
+  "310078": {
+    "name": "Forgotten Spring"
+  },
+  "310079": {
+    "name": "Fugitive Hideout"
+  },
+  "310080": {
+    "name": "Iagosh's Secret Storage"
+  },
+  "320001": {
+    "name": "Abandoned Memorial Room"
+  },
+  "320002": {
+    "name": "Trickster's Den"
+  },
+  "320003": {
+    "name": "Abandoned One's Grave"
+  },
+  "320004": {
+    "name": "Dratona Cave"
+  },
+  "320005": {
+    "name": "Predator's Lair"
+  },
+  "320006": {
+    "name": "Dusk Pit"
+  },
+  "320007": {
+    "name": "Lost Ruins"
+  },
+  "320008": {
+    "name": "Poisonous Plant Habitat"
+  },
+  "320009": {
+    "name": "Valka's Nest"
+  },
+  "320010": {
+    "name": "Old Graveyard"
+  },
+  "320011": {
+    "name": "Treasure Hunter's Residence"
+  },
+  "320012": {
+    "name": "Abandoned Archon Jail"
+  },
+  "320013": {
+    "name": "Fafnite Storage Room"
+  },
+  "320014": {
+    "name": "Insectoid Tunnel"
+  },
+  "320015": {
+    "name": "Bloodsoaked Confessional"
+  },
+  "320016": {
+    "name": "Prison of Oblivion"
+  },
+  "320017": {
+    "name": "Watcher's Temporary Outpost"
+  },
+  "320018": {
+    "name": "Blue Dragon's Trap"
+  },
+  "320019": {
+    "name": "Hidden Vein Cave"
+  },
+  "320020": {
+    "name": "Fortuneteller's Grave"
+  },
+  "320021": {
+    "name": "Howling Den"
+  },
+  "320022": {
+    "name": "Ossuary of the Noble"
+  },
+  "320023": {
+    "name": "Smuggler's Cave"
+  },
+  "320024": {
+    "name": "Homish's Prison Compound"
+  },
+  "320025": {
+    "name": "Kumbahum's Cave"
+  },
+  "320026": {
+    "name": "Victims' Cave"
+  },
+  "320027": {
+    "name": "Drana Depository"
+  },
+  "320028": {
+    "name": "High Priest's Ruins"
+  },
+  "320029": {
+    "name": "Closed Hideout"
+  },
+  "320030": {
+    "name": "All-Curing Cave"
+  },
+  "320031": {
+    "name": "Fungie Habitat"
+  },
+  "320032": {
+    "name": "Library of Wisdom"
+  },
+  "320033": {
+    "name": "Destroyed Scriptorium"
+  },
+  "320034": {
+    "name": "Dark Root Cave"
+  },
+  "320035": {
+    "name": "Unstable Cave"
+  },
+  "320036": {
+    "name": "Lamnah Base"
+  },
+  "320037": {
+    "name": "Twisted Pit"
+  },
+  "320038": {
+    "name": "Rift Fissure"
+  },
+  "320039": {
+    "name": "Scale Altar"
+  },
+  "320040": {
+    "name": "Library of Foresight"
+  },
+  "320041": {
+    "name": "Skurv Laborer Den"
+  },
+  "320042": {
+    "name": "Dratona Assembly Area"
+  },
+  "320043": {
+    "name": "Place of Rest"
+  },
+  "320044": {
+    "name": "Final Haven"
+  },
+  "320045": {
+    "name": "Worshiper's Underground Cave"
+  },
+  "320046": {
+    "name": "Fanatics' Den"
+  },
+  "320047": {
+    "name": "Spider Cave"
+  },
+  "320048": {
+    "name": "Empty Cave"
+  },
+  "320049": {
+    "name": "Lonely Rock Chasm"
+  },
+  "320050": {
+    "name": "Rock Cave"
+  },
+  "320051": {
+    "name": "Den of Exiles"
+  },
+  "320052": {
+    "name": "Pirate's Treasure Storage"
+  },
+  "320053": {
+    "name": "Shulak Cave"
+  },
+  "320054": {
+    "name": "Destruction Archons Armory"
+  },
+  "320055": {
+    "name": "Ascetic's Cave"
+  },
+  "320056": {
+    "name": "Lagta Fafnite Storage"
+  },
+  "320057": {
+    "name": "Warriors' Rest"
+  },
+  "320058": {
+    "name": "Tayga Breeding Ground"
+  },
+  "320059": {
+    "name": "Library of Patience"
+  },
+  "320060": {
+    "name": "Odylium Marauder Den"
+  },
+  "320061": {
+    "name": "Forgotten Fire Altar"
+  },
+  "320062": {
+    "name": "Abandoned Kromede Base"
+  },
+  "320063": {
+    "name": "Verdandi's Oratory"
+  },
+  "320064": {
+    "name": "Blades Secret Repository"
+  },
+  "320065": {
+    "name": "Frozen Land of Fate"
+  },
+  "320066": {
+    "name": "Land of Raging Flame"
+  },
+  "320067": {
+    "name": "Pure Spring"
+  },
+  "320068": {
+    "name": "Predator's Nest"
+  },
+  "320069": {
+    "name": "Cave of the Stranded"
+  },
+  "320070": {
+    "name": "Cave of the Exiled Ones"
+  },
+  "320071": {
+    "name": "Blades Base"
+  },
+  "320072": {
+    "name": "Patamor Marauder Base"
+  },
+  "320073": {
+    "name": "Kurpak Special Operations Unit Base"
+  },
+  "320074": {
+    "name": "Camouflaged Fate Archon Base"
+  },
+  "320075": {
+    "name": "Fire Cave"
+  },
+  "320076": {
+    "name": "Fate Temple"
+  },
+  "320077": {
+    "name": "Indnath Secret Base"
+  },
+  "320078": {
+    "name": "Guardian Statues' Cave"
+  },
+  "320079": {
+    "name": "Iralcig Naga Cave"
+  },
+  "320080": {
+    "name": "Patamor Underwater Cave"
+  },
+  "400001": {
+    "name": "Ruins of the Ancient City of Ru"
+  },
+  "400002": {
+    "name": "Ruins of the Ancient City of Ru"
+  },
+  "600082": {
+    "name": "Abyssal Forge: Ludra"
+  },
+  "610010": {
+    "name": "Submerged Life Temple"
+  },
+  "610011": {
+    "name": "Submerged Life Temple"
+  },
+  "610012": {
+    "name": "Submerged Life Temple"
+  },
+  "610013": {
+    "name": "Submerged Life Temple"
+  },
+  "610020": {
+    "name": "Mirror of Scarlet Desire"
+  },
+  "610021": {
+    "name": "Mirror of Scarlet Desire"
+  },
+  "610022": {
+    "name": "Mirror of Scarlet Desire"
+  },
+  "610023": {
+    "name": "Mirror of Scarlet Desire"
+  },
+  "610044": {
+    "name": "Dying Dramata's Nest"
+  },
+  "610052": {
+    "name": "Deus Research Base"
+  },
+  "610062": {
+    "name": "Shattered Arkanis"
+  },
+  "610070": {
+    "name": "Abyssal Horn Den"
+  },
+  "610071": {
+    "name": "Abyssal Horn Den"
+  },
+  "610072": {
+    "name": "Abyssal Horn Den"
+  },
+  "610073": {
+    "name": "Abyssal Horn Den"
+  },
+  "620011": {
+    "name": "Corroded Decontamination Facility"
+  },
+  "620021": {
+    "name": "Chalice of Muspel"
+  },
+  "620022": {
+    "name": "Chalice of Muspel"
+  },
+  "910011": {
+    "name": "Nightmare Altar"
+  },
+  "910012": {
+    "name": "Nightmare Altar"
+  },
+  "910013": {
+    "name": "Nightmare Altar"
+  },
+  "910014": {
+    "name": "Nightmare Altar"
+  },
+  "910015": {
+    "name": "Nightmare Altar"
+  },
+  "910016": {
+    "name": "Nightmare Altar"
+  },
+  "910021": {
+    "name": "Tyrant's Hideout"
+  },
+  "910022": {
+    "name": "Tyrant's Hideout"
+  },
+  "910023": {
+    "name": "Tyrant's Hideout"
+  },
+  "910024": {
+    "name": "Tyrant's Hideout"
+  },
+  "910025": {
+    "name": "Tyrant's Hideout"
+  },
+  "910026": {
+    "name": "Tyrant's Hideout"
+  },
+  "910031": {
+    "name": "Sanctum of Loathing"
+  },
+  "910032": {
+    "name": "Sanctum of Loathing"
+  },
+  "910033": {
+    "name": "Sanctum of Loathing"
+  },
+  "910034": {
+    "name": "Sanctum of Loathing"
+  },
+  "910035": {
+    "name": "Sanctum of Loathing"
+  },
+  "910036": {
+    "name": "Sanctum of Loathing"
+  },
+  "910041": {
+    "name": "Depository of Fates"
+  },
+  "910042": {
+    "name": "Depository of Fates"
+  },
+  "910043": {
+    "name": "Depository of Fates"
+  },
+  "910044": {
+    "name": "Depository of Fates"
+  },
+  "910045": {
+    "name": "Depository of Fates"
+  },
+  "910046": {
+    "name": "Depository of Fates"
+  },
+  "910051": {
+    "name": "Forgotten Repository"
+  },
+  "910052": {
+    "name": "Forgotten Repository"
+  },
+  "910053": {
+    "name": "Forgotten Repository"
+  },
+  "910054": {
+    "name": "Forgotten Repository"
+  },
+  "910055": {
+    "name": "Forgotten Repository"
+  },
+  "910056": {
+    "name": "Forgotten Repository"
+  },
+  "910057": {
+    "name": "Forgotten Repository"
+  },
+  "910061": {
+    "name": "Chamber of the Dead"
+  },
+  "910062": {
+    "name": "Chamber of the Dead"
+  },
+  "910063": {
+    "name": "Chamber of the Dead"
+  },
+  "910064": {
+    "name": "Chamber of the Dead"
+  },
+  "910065": {
+    "name": "Chamber of the Dead"
+  },
+  "910066": {
+    "name": "Chamber of the Dead"
+  },
+  "910067": {
+    "name": "Chamber of the Dead"
+  }
+}

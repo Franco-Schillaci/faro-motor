@@ -1,0 +1,68 @@
+<Window x:Class="Aion2DpsMeter.App.Views.HistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:Aion2DpsMeter.App.Views"
+        Title="Fight history — AION 2 DPS Meter"
+        Width="1100" Height="720" MinWidth="800" MinHeight="480"
+        Background="{StaticResource WindowBg}" FontFamily="Segoe UI" FontSize="12">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Filters and monsters -->
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Top" Text="Search" Style="{StaticResource SectionTitle}" Margin="0,0,0,4" />
+            <TextBox DockPanel.Dock="Top" x:Name="SearchBox" TextChanged="Filter_Changed" ToolTip="Monster or boss name" />
+            <CheckBox DockPanel.Dock="Top" x:Name="BossesOnly" Content="Bosses only" Margin="0,8,0,0" Click="Filter_Changed" />
+            <CheckBox DockPanel.Dock="Top" x:Name="KillsOnly" Content="Kills only" Click="Filter_Changed" />
+            <Grid DockPanel.Dock="Top">
+                <TextBlock Text="Monsters" Style="{StaticResource SectionTitle}" />
+                <Button Style="{StaticResource TextButton}" Content="Show all" HorizontalAlignment="Right" Click="ShowAll_Click" Margin="0,8,0,0" />
+            </Grid>
+            <ListBox x:Name="MonsterList" SelectionChanged="MonsterList_SelectionChanged"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                            <TextBlock Text="{Binding Stats}" Foreground="{StaticResource SubText}" FontSize="11" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="2*" MinHeight="120" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="3*" MinHeight="200" />
+            </Grid.RowDefinitions>
+            <Grid Margin="0,0,0,6">
+                <TextBlock x:Name="CountText" Foreground="{StaticResource SubText}" VerticalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource Button}" Content="Refresh" Click="Refresh_Click" Margin="0,0,6,0" />
+                    <Button Style="{StaticResource Button}" Content="Delete" Click="Delete_Click" x:Name="DeleteButton" />
+                </StackPanel>
+            </Grid>
+            <DataGrid Grid.Row="1" x:Name="FightsGrid" SelectionChanged="FightsGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="When" Binding="{Binding When}" SortMemberPath="Summary.StartedAt" Width="120" />
+                    <DataGridTextColumn Header="Monster" Binding="{Binding Name}" Width="*" />
+                    <DataGridTextColumn Header="Result" Binding="{Binding Result}" Width="70" />
+                    <DataGridTextColumn Header="Time" Binding="{Binding DurationText}" SortMemberPath="Summary.DurationMs" Width="60" ElementStyle="{StaticResource RightCell}" />
+                    <DataGridTextColumn Header="Party DPS" Binding="{Binding DpsText}" SortMemberPath="Summary.TotalDps" Width="80" ElementStyle="{StaticResource RightCell}" />
+                    <DataGridTextColumn Header="Your DPS" Binding="{Binding LocalDpsText}" SortMemberPath="Summary.LocalDps" Width="80" ElementStyle="{StaticResource RightCell}" />
+                    <DataGridTextColumn Header="Damage" Binding="{Binding DamageText}" SortMemberPath="Summary.TotalDamage" Width="80" ElementStyle="{StaticResource RightCell}" />
+                    <DataGridTextColumn Header="Players" Binding="{Binding Summary.PlayerCount}" Width="56" ElementStyle="{StaticResource RightCell}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" Background="Transparent" />
+            <v:EncounterDetailsView Grid.Row="3" x:Name="Details" />
+        </Grid>
+    </Grid>
+</Window>

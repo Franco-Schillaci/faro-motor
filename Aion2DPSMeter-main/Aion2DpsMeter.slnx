@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Aion2DpsMeter.App/Aion2DpsMeter.App.csproj" />
+    <Project Path="src/Aion2DpsMeter.Core/Aion2DpsMeter.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Aion2DpsMeter.Tests/Aion2DpsMeter.Tests.csproj" />
+  </Folder>
+</Solution>

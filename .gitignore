@@ -1,0 +1,9 @@
+# Lo que compila .NET y los archivos de Visual Studio
+bin/
+obj/
+.vs/
+*.user
+TestResults/
+
+# Motor compilado (sale del instalador de Faro, no del repositorio)
+publish-nuevo/
