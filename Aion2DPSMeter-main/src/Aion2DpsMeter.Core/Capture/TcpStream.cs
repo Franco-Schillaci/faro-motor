@@ -23,6 +23,12 @@ public sealed class TcpStream
 
     public TcpStream(PacketParser parser) => _parser = parser;
 
+    /// <summary>
+    /// Fork (Faro): bytes the capture never got (packet loss), each time the stream gives up waiting for them, with the
+    /// capture time (ms). Whatever they carried is gone: a hit, or the «left your view» that «Enemigos cerca» needs.
+    /// </summary>
+    public event Action<long, long>? BytesLost;
+
     public PacketParser Parser => _parser;
     public int BufferedBytes => _length;
 
@@ -45,7 +51,7 @@ public sealed class TcpStream
                     _heldSinceMs = timestampMs;
                 _held[seq] = data.ToArray();
                 if (_held.Count > MaxHeldSegments || timestampMs - _heldSinceMs > MaxHoldMs)
-                    SkipGap();
+                    SkipGap(timestampMs);
             }
             else
             {
@@ -80,9 +86,11 @@ public sealed class TcpStream
     }
 
     /// <summary>The missing bytes are not coming: continue from the earliest held segment.</summary>
-    private void SkipGap()
+    private void SkipGap(long timestampMs)
     {
         var first = _held.First();
+        if (_nextSeq is uint next)
+            BytesLost?.Invoke(first.Key - next, timestampMs);
         _nextSeq = first.Key;
         DrainHeld();
     }

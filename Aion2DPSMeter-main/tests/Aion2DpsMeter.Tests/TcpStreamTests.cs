@@ -45,6 +45,39 @@ public class TcpStreamTests
     }
 
     [Fact]
+    public void A_lost_segment_is_reported_with_its_size()
+    {
+        var (store, stream) = Setup();
+        var lost = new List<(long Bytes, long At)>();
+        stream.BytesLost += (bytes, at) => lost.Add((bytes, at));
+        var data = Hits(10);
+        var chunks = data.Chunk(37).ToList();
+        uint seq = 1000;
+        var segments = chunks.Select(c => { var s = (Seq: seq, Data: c); seq += (uint)c.Length; return s; }).ToList();
+        // The capture never gets segment 2: the stream waits up to 500 ms for it, then goes on without it.
+        long t = 1000;
+        foreach (var (s, i) in segments.Select((s, i) => (s, i)).Where(x => x.i != 2))
+            stream.Add(s.Seq, s.Data, t += 300);
+        var gap = Assert.Single(lost);
+        Assert.Equal(segments[2].Data.Length, gap.Bytes);
+        Assert.Equal(2500, gap.At);   // segment 5, the first to arrive more than 500 ms after segment 3 was held
+    }
+
+    [Fact]
+    public void A_late_segment_that_arrives_in_time_is_not_reported_as_lost()
+    {
+        var (store, stream) = Setup();
+        int lost = 0;
+        stream.BytesLost += (_, _) => lost++;
+        var data = Hits(4);
+        stream.Add(1000, data[..37], 1000);
+        stream.Add(1000 + 74, data[74..], 1100);     // from the future: held
+        stream.Add(1000 + 37, data[37..74], 1400);   // the missing piece, within 500 ms
+        Assert.Equal(0, lost);
+        Assert.Equal(400, store.GetDisplayRecord()!.TotalDamage);
+    }
+
+    [Fact]
     public void Sequence_wraparound_is_handled()
     {
         var (store, stream) = Setup();

@@ -20,7 +20,7 @@ public class ProgressTests
             .. U16(server), .. U32(cls), 0x01, .. U32(level), .. U32(gear), .. U32(gear), .. U32(level), 0, 0];
     }
 
-    private static byte[] CombatPower(uint cp) => [0x56, 0x36, 1, 2, 0, 0, 0, 0, 0, 0, .. U32(cp), 0, 0, 0, 0];
+    private static byte[] CombatPower(uint cp, uint other = 204_769) => [0x56, 0x36, .. U64(cp), .. U64(other)];
     private static byte[] Gear(uint v) => [0x1D, 0x56, .. U32(v), .. U32(v)];
     private static byte[] Kinah(ulong v, bool live = false) => [live ? (byte)0xA6 : (byte)0xA5, 0xFF, .. U64(v), .. U64(1_761_000_000_000)];
     private static byte[] Duty(uint a, uint done) => [0x1C, 0x8D, .. U32(a), .. U32(done), 9, 9, 9];
@@ -123,6 +123,20 @@ public class ProgressTests
         var bytes = Identity("Nocturna");
         for (int cut = 3; cut < bytes.Length - 8; cut++)
             Decode(bytes[..cut]); // never throws
+    }
+
+    [Fact]
+    public void Combat_power_is_the_first_number_of_its_frame()
+    {
+        // Real frames from a world entry (12/11/2026): the first number grows while the gear loads and ends at the
+        // 175.0K the game showed; the second stayed at 204,769, which Faro used to show as your CP.
+        static byte[] Real(string hex) => Convert.FromHexString(hex);
+        Assert.Equal(new CombatPowerEvent(131_793), Decode(Real("5636" + "D10202" + "0000000000" + "E11F03" + "0000000000")));
+        Assert.Equal(new CombatPowerEvent(144_404), Decode(Real("5636" + "143402" + "0000000000" + "E11F03" + "0000000000")));
+        Assert.Equal(new CombatPowerEvent(174_579), Decode(Real("5636" + "F3A902" + "0000000000" + "E11F03" + "0000000000")));
+        // 28/10/2026: both numbers ended equal.
+        Assert.Equal(new CombatPowerEvent(96_404), Decode(Real("5636" + "947801" + "0000000000" + "947801" + "0000000000")));
+        Assert.Null(Decode(CombatPower(0)));
     }
 
     [Fact]

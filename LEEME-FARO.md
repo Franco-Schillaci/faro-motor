@@ -44,6 +44,10 @@ Fecha: 26/10/2026.
   tickets y energía (`0B 61` / `0C 61`), Suministros de emergencia (`56 E2` / `3E E2`), kinah ganado hoy (`A5 FF` /
   `A6 FF`), misiones de servicio (`1C 8D`) y Daeva Pass (`24 E3`). Los datos de la entrada al mundo llegan antes que
   el nombre del personaje: se guardan por conexión y se asignan al nombre que sigue.
+- Combat power (`56 36 <u64 CP><u64 otro número>`): se lee el **primero**. AcompanION leía el segundo, y Faro mostraba
+  204.769 cuando el juego decía 175,0K (13/11/2026). Al entrar al mundo llega varias veces y el primero sube mientras
+  carga el equipo (131.793 → 144.404 → 174.579 el 12/11/2026); el segundo quedó fijo en 204.769 y el 28/10 terminó igual
+  al primero, así que es otra cosa (¿el máximo?). Prueba con esas tramas reales en `ProgressTests.cs`.
 - `Opcodes.cs`: esos códigos, editables en `opcodes.json` como los demás. `PacketParser.cs`, `CaptureDispatcher.cs`,
   `MeterEngine.cs`: pasan cada mensaje al lector nuevo. `FaroBridge.cs`: mensaje `progress` a Faro al cambiar algo
   (y cada 30 s). `App.xaml.cs`: lo conecta y anota en el log las líneas «progress:». `JobClass.cs`: códigos de clase
@@ -115,6 +119,15 @@ Fecha: 26/10/2026.
   - el cambio de zona (`23 36 00`), que vacía la lista.
   Con las 9 capturas del 28-30/10: 78 de 78 jugadores con servidor y CP. El servidor y la legión de la aparición también
   van a PvP, así los que te pegaron sin matarte salen con su servidor. Pruebas en `tests/NearbyTests.cs`.
+  No hay vencimiento por tiempo: si el `47 36` se pierde, el jugador queda en la lista hasta el próximo cambio de zona
+  (13/11/2026 en el Abismo; resucitar no es cambio de zona). En las 15 capturas guardadas las 77 salidas llegaron al
+  principio de un mensaje (las lee bien); falta una captura del Abismo para saber la causa.
+- Paquetes perdidos (`TcpStream.BytesLost` + `CaptureDispatcher.Trace`): cuando a la captura le falta un pedazo del
+  tráfico del juego (Npcap no lo entregó) y el motor deja de esperarlo (500 ms), el log anota «capture: packets lost:
+  N gap(s), M bytes missing, the first at HH:MM:SS», sumado y como mucho una vez por minuto. Lo que venía ahí se
+  perdió: un golpe o el «salió de tu vista» de Enemigos cerca. Los primeros 5 s después de engancharse a la conexión no
+  cuentan (el motor saltea lo que la búsqueda no le pasó). Antes se salteaba sin dejar rastro. Pruebas en
+  `TcpStreamTests.cs` y `DispatcherTests.cs`.
 
 ## Compilar / actualizar el motor
 

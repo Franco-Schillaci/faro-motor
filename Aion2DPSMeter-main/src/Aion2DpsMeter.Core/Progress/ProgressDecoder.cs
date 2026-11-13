@@ -168,13 +168,18 @@ public static class ProgressDecoder
         return new IdentityEvent(name, server, cls, (int)level, gear);
     }
 
-    /// <summary><c>56 36 &lt;8 bytes&gt; &lt;u32 combat power&gt; …</c></summary>
+    /// <summary>
+    /// <c>56 36 &lt;u64 combat power&gt; &lt;u64 another value&gt;</c>. Fork (Faro): the first is the number the game
+    /// shows. It comes several times at world entry, growing while the gear loads: 131,793 → 144,404 → 174,579 on
+    /// 12/11/2026, with 175.0K in the game. The second stayed at 204,769 then (Faro showed it as your CP until 13/11/2026)
+    /// and ended equal to the first on 28/10, so it is something else (maybe the highest).
+    /// </summary>
     private static ProgressEvent? CombatPower(ReadOnlySpan<byte> b)
     {
         var c = new Cur(b, 2);
-        if (!c.Skip(8) || !c.U32(out uint cp) || cp == 0 || cp > 50_000_000)
+        if (!c.U64(out ulong cp) || cp == 0 || cp > 50_000_000)
             return null;
-        return new CombatPowerEvent(cp);
+        return new CombatPowerEvent((uint)cp);
     }
 
     /// <summary><c>1D 56 &lt;u32 gear score&gt; &lt;u32 the same&gt;</c>, nothing after.</summary>

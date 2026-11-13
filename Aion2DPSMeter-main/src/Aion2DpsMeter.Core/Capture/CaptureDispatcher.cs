@@ -43,8 +43,22 @@ public sealed class CaptureDispatcher
     private readonly Dictionary<string, TcpStream> _streams = new();
     private readonly Dictionary<string, (int Count, long LastMs)> _signatureHits = new();
 
+    /// <summary>Fork (Faro): packet loss on the game stream goes to the log at most this often, summed.</summary>
+    private const long LossReportMs = 60_000;
+    /// <summary>
+    /// Right after locking, the stream jumps over what the search did not feed it (only packets with the signature):
+    /// not real loss.
+    /// </summary>
+    private const long LossGraceMs = 5_000;
+
     private ushort? _lockedPort;
     private string? _lockedDevice;
+    private string? _lockedKey;
+    private long _lockedAtMs;
+    private int _lossGaps;
+    private long _lossBytes;
+    private long _lossSinceMs;
+    private long _lossReportedMs;
     private long _firstCandidateMs;
     private long _lastParsedMs;
     /// <summary>When the game process was last looked for; null = never (checked on the first packet).</summary>
@@ -63,6 +77,11 @@ public sealed class CaptureDispatcher
     public event Action<CaptureStatus>? StatusChanged;
     /// <summary>Raised for every packet of the locked game stream (server to client), e.g. for recording.</summary>
     public event Action<TcpPayload>? GamePacket;
+    /// <summary>
+    /// Fork (Faro): diagnostics for the log. «capture: packets lost …» = the capture missed part of the game stream
+    /// (Npcap dropped it): what came in it is gone, e.g. a «left your view» (an enemy stuck in «Enemigos cerca»).
+    /// </summary>
+    public event Action<string>? Trace;
 
     public CaptureDispatcher(CombatStore store, GameData data, Opcodes opcodes, Progress.ProgressTracker? progress = null, Pvp.PvpTracker? pvp = null)
     {
@@ -126,7 +145,10 @@ public sealed class CaptureDispatcher
 
         string key = p.Device + "|" + p.FlowKey;
         if (!_streams.TryGetValue(key, out var stream))
+        {
             _streams[key] = stream = new TcpStream(new PacketParser(_store, _data, _opcodes, _progress, _pvp));
+            stream.BytesLost += (bytes, at) => NoteLoss(key, bytes, at);
+        }
 
         if (_lockedPort is null)
         {
@@ -153,13 +175,42 @@ public sealed class CaptureDispatcher
                 Lock(p, key);
         }
 
+        ReportLoss(now);
         _store.Tick(now);
+    }
+
+    /// <summary>Fork (Faro): a gap the game stream gave up on, counted only once locked onto it.</summary>
+    private void NoteLoss(string key, long bytes, long at)
+    {
+        if (_lockedPort is null || key != _lockedKey || at - _lockedAtMs < LossGraceMs || bytes <= 0)
+            return;
+        if (_lossGaps == 0)
+            _lossSinceMs = at;
+        _lossGaps++;
+        _lossBytes += bytes;
+    }
+
+    /// <summary>
+    /// Fork (Faro): the loss counted so far, to the log, at most once every <see cref="LossReportMs"/>. Each line says
+    /// when the first gap of the lot was, so it can be matched with what happened in the game.
+    /// </summary>
+    private void ReportLoss(long now)
+    {
+        if (_lossGaps == 0 || now - _lossReportedMs < LossReportMs)
+            return;
+        var since = DateTimeOffset.FromUnixTimeMilliseconds(_lossSinceMs).ToLocalTime();
+        Trace?.Invoke($"capture: packets lost: {_lossGaps} gap(s), {_lossBytes} bytes missing, the first at {since:HH:mm:ss}");
+        _lossGaps = 0;
+        _lossBytes = 0;
+        _lossReportedMs = now;
     }
 
     private void Lock(TcpPayload p, string key)
     {
         _lockedPort = p.SrcPort;
         _lockedDevice = p.Device;
+        _lockedKey = key;
+        _lockedAtMs = p.TimestampMs;
         _lastParsedMs = p.TimestampMs;
         foreach (var other in _streams.Keys.Where(k => k != key).ToList())
             _streams.Remove(other);
@@ -171,6 +222,9 @@ public sealed class CaptureDispatcher
     {
         _lockedPort = null;
         _lockedDevice = null;
+        _lockedKey = null;
+        _lossGaps = 0;
+        _lossBytes = 0;
         _firstCandidateMs = 0;
         _lastParsedMs = 0;
         _streams.Clear();

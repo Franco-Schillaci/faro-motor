@@ -123,6 +123,8 @@ public partial class App : Application
         // Fork: you died to a player: who it was, who else hit you and their gear, to Faro's PvP tab.
         _engine.Pvp.Died += d => _faro?.SendDeath(d);
         _engine.Pvp.Trace += msg => Logger.Info(msg);
+        // Fork: packets the capture missed on the game connection (e.g. an enemy stuck in «Enemigos cerca»).
+        _engine.Dispatcher.Trace += msg => Logger.Info(msg);
         // Fork: «captura de momentos» — the last 30 s of game packets, saved to a file when Faro asks (Ctrl+Alt+K).
         if (!demo)
         {
